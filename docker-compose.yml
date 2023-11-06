@@ -1,8 +1,8 @@
 version: '3.9'
 services:
   energy:
-    container_name: energy-front
+    container_name: localRoot-frontend
     build:
       context: ./
     ports:
-      - 3271:3271
+      - 3273:3273

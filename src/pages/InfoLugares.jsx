@@ -12,6 +12,7 @@ import CrearEditarLugares from "../components/CrearEditarLugares";
 
 const InfoLugares = () => {
   const { id } = useParams();
+ 
   const token = localStorage.getItem("token");
   const [DataLugar, setDataLugar] = useState({});
   const Usuario = localStorage.getItem("username");
@@ -100,22 +101,33 @@ const InfoLugares = () => {
         }
       });
   };
+
+ 
+
+ 
   const handleDeleteLike = () => {
     Swal.fire({
-      title: `¿Está seguro de Eliminar este lugar de favoritos <strong>${DataLugar.nombreLugar}</strong>?!`,
+      title: `¿Está seguro de Eliminar este lugar <strong>${DataLugar.nombreLugar}</strong> de favoritos? Esta acción es irreversible!`,
       showCancelButton: true,
       confirmButtonText: "Si",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        //Accion en caso de que elijan el SI
-        const endPoint = `${Constantes.URL_BASE}/lugares/deletelugareslike/${id}`;
-        await axios
+        // Acción en caso de que elijan el SI
+        const endPoint = `${Constantes.URL_BASE}/lugares/deleteLugarLike`; 
+        const datosLugar = {
+          Usuario: Usuario, 
+          idLugares: DataLugar._id, 
+        };
+  
+        axios
           .delete(endPoint, {
+            data: datosLugar,
             headers: { Authorization: `bearer ${token}` },
           })
           .then((resp) => {
             Swal.fire("Información!", resp.data.message, "success");
             handleOneLugar();
+            window.location.reload();
           })
           .catch((err) => {
             console.log(err);
@@ -130,6 +142,7 @@ const InfoLugares = () => {
       }
     });
   };
+  
 
   return (
     <div className="contGeneral">
@@ -195,6 +208,9 @@ const InfoLugares = () => {
         </div>
         {Usuario != null ? (
           <button onClick={handleLikelugares}> Guardar en Favoritos</button>
+        ) : null}
+        {Usuario != null ? (
+          <button onClick={handleDeleteLike}> Eliminar en Favoritos</button>
         ) : null}
 
         {DataLugar.usuario === Usuario ? (

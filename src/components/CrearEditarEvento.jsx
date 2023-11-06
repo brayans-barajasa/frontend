@@ -158,7 +158,10 @@ function CrearEditarEvento() {
         })
         .catch((error) => {
           console.error(error);
-          if (error.response && (error.response.status === 400 || error.response.status === 404)) {
+          if (
+            error.response &&
+            (error.response.status === 400 || error.response.status === 404)
+          ) {
             Swal.fire("Error", error.response.data.message, "error");
           } else {
             Swal.fire("Error", "Ocurrió un error", "error");
@@ -181,18 +184,27 @@ function CrearEditarEvento() {
     "Tecnología",
     "Negocios y Finanzas",
     "Medio Ambiente",
-    "Comunidad y Voluntariado"
+    "Comunidad y Voluntariado",
   ];
-  
+
   return (
     <div>
-      <Button className="crear-evento-button" variant="outline-primary" onClick={mostrarModalEvento}>
-        {id ? "Editar evento" : "Crear evento"}
-      </Button>{" "}
-
-      <Modal className="custom-modal" show={showEventModal} onHide={cerrarModalEvento} centered>
+      <li>
+        <a class="dropdown-item" href="#" onClick={mostrarModalEvento}>
+          editar evento
+        </a>
+      </li>
+      
+      <Modal
+        className="custom-modal"
+        show={showEventModal}
+        onHide={cerrarModalEvento}
+        centered
+      >
         <Modal.Header closeButton>
-          <Modal.Title className="modal-title">{id ? "Editar Evento" : "Crear Evento"}</Modal.Title>
+          <Modal.Title className="modal-title">
+            {id ? "Editar Evento" : "Crear Evento"}
+          </Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
@@ -267,22 +279,21 @@ function CrearEditarEvento() {
               value={descripcionEvento}
               onChange={(e) => setDescripcionEvento(e.target.value)}
               onInput={autoExpand}
-
-
-
             />
           </Form.Group>
           <Form.Group className="mb-3">
             <Form.Label>Categoría del evento</Form.Label>
             <div className="row">
               {categoriasDiferentes.map((categoria, index) => (
-                <div className="col-4" key={datosEvento._id}>
+                <div className="col-4" key={index}>
                   <Form.Check
                     type="checkbox"
                     id={`categoria${index + 1}`}
                     label={categoria}
                     checked={categoriaEvento.includes(categoria)}
-                    onChange={(e) => handleCategoriaCheckbox(e.target.checked, categoria)}
+                    onChange={(e) =>
+                      handleCategoriaCheckbox(e.target.checked, categoria)
+                    }
                   />
                 </div>
               ))}
@@ -317,7 +328,6 @@ function CrearEditarEvento() {
             </Form.Group>
           )}
 
-          
           <Form.Group className="mb-3">
             <Form.Label>Enlace de la imagen del evento</Form.Label>
             <Form.Control
@@ -349,3 +359,4 @@ function CrearEditarEvento() {
 }
 
 export default CrearEditarEvento;
+  

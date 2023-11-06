@@ -111,7 +111,7 @@ const Perfil = () => {
       });
   }
 
-  async function handleLugarlike() {
+  async function handleLugarlikelistar() {
     const endPoin = `${Constantes.URL_BASE}/lugares/listlugaresLike/${Usuario}`;
     await axios
       .get(endPoin, {
@@ -132,14 +132,15 @@ const Perfil = () => {
       });
   }
 
+
   useEffect(() => {
     handleEvento();
     handlEventolike();
     handleOneUser();
     handleLugar();
-    handleLugarlike();
-  
+    handleLugarlikelistar();
   }, []);
+
   return (
     <div className="contGeneral">
       <Header />
@@ -168,7 +169,7 @@ const Perfil = () => {
               </h6>
             </div>
             <div className="nombre">
-            {Datauser.TipoUsuario &&
+              {Datauser.TipoUsuario &&
               Datauser.TipoUsuario.includes("administrador") ? (
                 <h6 className="usuario-perfil">
                   Lugares creados: {DataLugar.length}

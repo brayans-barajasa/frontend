@@ -196,7 +196,7 @@ function CrearEditarLugares() {
             <Form.Label>Categoría del Lugar</Form.Label>
             <div className="row">
               {categoriasDiferentes.map((categoria, index) => (
-                <div className="col-4" key={datosLugar._id}>
+                <div className="col-4" key={index}>
                   <Form.Check
                     type="checkbox"
                     id={`categoria${index + 1}`}
