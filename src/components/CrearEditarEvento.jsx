@@ -189,11 +189,10 @@ function CrearEditarEvento() {
 
   return (
     <div>
-      <li>
-        <a class="dropdown-item" href="#" onClick={mostrarModalEvento}>
-          editar evento
-        </a>
-      </li>
+      
+      <Button className="crear-evento-button" variant="outline-primary" onClick={mostrarModalEvento}>
+        {id ? "Editar Evento" : "Crear Evento"}
+      </Button>{" "}
       
       <Modal
         className="custom-modal"

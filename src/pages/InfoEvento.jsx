@@ -156,31 +156,38 @@ const InfoEvento = () => {
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
             {DataEvento.usuario === usuario ? (
-              <div >
+              <div>
                 <CrearEditarEvento />
                 <li>
-                  <a
-                    class="dropdown-item"
-                    href="#"
+                  <button
+                    type="button"
+                    class="btn btn-outline-primary"
                     onClick={() => handleDelete(DataEvento)}
                   >
+                    {" "}
                     Eliminar Evento
-                  </a>
+                  </button>
                 </li>
               </div>
             ) : null}
             {usuario != null ? (
               <div>
-                <li>
-                  <a class="dropdown-item" href="#" onClick={handleLikeEventos}>
-                    Guardar en favoritos
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#" onClick={handleDeleteLike}>
-                    Eliminar de favoritos
-                  </a>
-                </li>
+                <button
+                  type="button"
+                  class="btn btn-outline-primary"
+                  onClick={handleLikeEventos}
+                >
+                  {" "}
+                  Eliminar Evento
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-outline-primary"
+                  onClick={handleDeleteLike}
+                >
+                  {" "}
+                  Eliminar Evento de favoritos
+                </button>
               </div>
             ) : null}
           </ul>
