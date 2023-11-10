@@ -34,6 +34,7 @@ const Eventos = () => {
         }
       });
   };
+  console.log("===>",DataEvento)
 
   useEffect(() => {
     obtenerEventos();

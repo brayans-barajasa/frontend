@@ -144,15 +144,15 @@ const InfoEvento = () => {
     <div className="contGeneral">
       <Header />
       <div className="Contenedor">
-        <div class="dropdown">
+        <div className="dropdown">
           <button
-            class="btn btn-secondary dropdown-toggle"
+            className="btn btn-secondary dropdown-toggle"
             type="button"
             id="dropdownMenuButton1"
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
-            Botón Dropdown
+            Opciones
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
             {DataEvento.usuario === usuario ? (
@@ -161,7 +161,7 @@ const InfoEvento = () => {
                 <li>
                   <button
                     type="button"
-                    class="btn btn-outline-primary"
+                    className="btn btn-outline-primary"
                     onClick={() => handleDelete(DataEvento)}
                   >
                     {" "}
@@ -174,7 +174,7 @@ const InfoEvento = () => {
               <div>
                 <button
                   type="button"
-                  class="btn btn-outline-primary"
+                  className="btn btn-outline-primary"
                   onClick={handleLikeEventos}
                 >
                   {" "}
@@ -182,7 +182,7 @@ const InfoEvento = () => {
                 </button>
                 <button
                   type="button"
-                  class="btn btn-outline-primary"
+                  className="btn btn-outline-primary"
                   onClick={handleDeleteLike}
                 >
                   {" "}

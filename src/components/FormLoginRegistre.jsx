@@ -44,7 +44,7 @@ function Login() {
                 console.log(resp);
                 localStorage.setItem("token", resp.data.jwt);
                 localStorage.setItem("user", resp.data.user);
-                localStorage.setItem("usuario", usuario);
+                localStorage.setItem("username", usuario);
                 navigate("/Inicio");
                 Swal.fire('Informacion!', localStorage.getItem("usuario") + " Bienvenido");
             })
