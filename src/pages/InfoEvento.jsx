@@ -1,5 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import Dropdown from "react-bootstrap/Dropdown";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Header from "../components/Header";
@@ -45,7 +46,7 @@ const InfoEvento = () => {
 
   const handleDelete = () => {
     Swal.fire({
-      title: `¿Está seguro de Eliminar este lugar <strong>${DataEvento.nombre}</strong>? Esta acción es irreversible!`,
+      title: `¿Está seguro de Eliminar este Evento <strong>${DataEvento.nombre}</strong>? Esta acción es irreversible!`,
       showCancelButton: true,
       confirmButtonText: "Si",
     }).then(async (result) => {
@@ -143,56 +144,38 @@ const InfoEvento = () => {
   return (
     <div className="contGeneral">
       <Header />
+
       <div className="Contenedor">
-        <div className="dropdown">
-          <button
-            className="btn btn-secondary dropdown-toggle"
-            type="button"
-            id="dropdownMenuButton1"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Opciones
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            {DataEvento.usuario === usuario ? (
-              <div>
-                <CrearEditarEvento />
-                <li>
-                  <button
-                    type="button"
-                    className="btn btn-outline-primary"
+        {usuario != null && (
+          <Dropdown>
+            <Dropdown.Toggle variant="success" id="dropdown-basic">
+              Opciones
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu>
+              {DataEvento.usuario === usuario && (
+                <>
+                  <Dropdown.Item href="#/action-1">
+                    <CrearEditarEvento />
+                  </Dropdown.Item>
+                  <Dropdown.Item
+                    href="#/action-2"
                     onClick={() => handleDelete(DataEvento)}
                   >
-                    {" "}
                     Eliminar Evento
-                  </button>
-                </li>
-              </div>
-            ) : null}
-            {usuario != null ? (
-              <div>
-                <button
-                  type="button"
-                  className="btn btn-outline-primary"
-                  onClick={handleLikeEventos}
-                >
-                  {" "}
-                  Eliminar Evento
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-outline-primary"
-                  onClick={handleDeleteLike}
-                >
-                  {" "}
-                  Eliminar Evento de favoritos
-                </button>
-              </div>
-            ) : null}
-          </ul>
-        </div>
+                  </Dropdown.Item>
+                </>
+              )}
 
+              <Dropdown.Item href="#/action-3" onClick={handleLikeEventos}>
+                Guardar Evento en favoritos
+              </Dropdown.Item>
+              <Dropdown.Item href="#/action-4" onClick={handleDeleteLike}>
+                Eliminar Evento de favoritos
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+        )}
         <h2 className="nombre">{DataEvento.nombre}</h2>
         <div className="infoGeneral">
           <img src={DataEvento.imageEvento} alt="" />
@@ -208,12 +191,10 @@ const InfoEvento = () => {
                 {DataEvento.horaInicioEvento}
               </p>
               <p>
-                {" "}
                 <b>Fecha fin:</b> <br />
                 {DataEvento.fechaFinEvento}{" "}
               </p>
               <p>
-                {" "}
                 <b>Hora fin:</b> <br />
                 {DataEvento.horaFinEvento}{" "}
               </p>

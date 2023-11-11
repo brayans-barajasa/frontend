@@ -1,5 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import Dropdown from "react-bootstrap/Dropdown";
 
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -12,7 +13,7 @@ import CrearEditarLugares from "../components/CrearEditarLugares";
 
 const InfoLugares = () => {
   const { id } = useParams();
- 
+
   const token = localStorage.getItem("token");
   const [DataLugar, setDataLugar] = useState({});
   const Usuario = localStorage.getItem("username");
@@ -102,9 +103,6 @@ const InfoLugares = () => {
       });
   };
 
- 
-
- 
   const handleDeleteLike = () => {
     Swal.fire({
       title: `¿Está seguro de Eliminar este lugar <strong>${DataLugar.nombreLugar}</strong> de favoritos? Esta acción es irreversible!`,
@@ -113,12 +111,12 @@ const InfoLugares = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         // Acción en caso de que elijan el SI
-        const endPoint = `${Constantes.URL_BASE}/lugares/deleteLugarLike`; 
+        const endPoint = `${Constantes.URL_BASE}/lugares/deleteLugarLike`;
         const datosLugar = {
-          Usuario: Usuario, 
-          idLugares: DataLugar._id, 
+          Usuario: Usuario,
+          idLugares: DataLugar._id,
         };
-  
+
         axios
           .delete(endPoint, {
             data: datosLugar,
@@ -142,12 +140,42 @@ const InfoLugares = () => {
       }
     });
   };
-  
-
   return (
     <div className="contGeneral">
       <Header />
+
       <div className="Contenedor">
+        {Usuario != null && (
+          <Dropdown>
+            <Dropdown.Toggle variant="success" id="dropdown-basic">
+              Opciones
+            </Dropdown.Toggle>
+
+            <Dropdown.Menu>
+              {DataLugar.usuario === Usuario && (
+                <>
+                  <Dropdown.Item href="#/action-1">
+                    <CrearEditarLugares />
+                  </Dropdown.Item>
+                  <Dropdown.Item
+                    href="#/action-2"
+                    onClick={() => handleDelete(DataLugar)}
+                  >
+                    Eliminar Lugar
+                  </Dropdown.Item>
+                </>
+              )}
+
+              <Dropdown.Item href="#/action-3" onClick={handleLikelugares}>
+                Guardar Lugar en favoritos
+              </Dropdown.Item>
+              <Dropdown.Item href="#/action-4" onClick={handleDeleteLike}>
+                Eliminar Lugar de favoritos
+              </Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
+        )}
+
         <h1>Encuentra grandes lugares y disfrútalos</h1>
         <h2 className="nombre">{DataLugar.nombreLugar}</h2>
         <div className="infoGeneral">
@@ -206,33 +234,6 @@ const InfoLugares = () => {
               .split("\n")
               .map((parrafo, index) => <p key={index}>{parrafo}</p>)}
         </div>
-        {Usuario != null ? (
-          <button onClick={handleLikelugares}> Guardar en Favoritos</button>
-        ) : null}
-        {Usuario != null ? (
-          <button onClick={handleDeleteLike}> Eliminar en Favoritos</button>
-        ) : null}
-
-        {DataLugar.usuario === Usuario ? (
-          <div className="d-flex">
-            <button className="btn" onClick={() => handleDelete(DataLugar)}>
-              <svg
-                viewBox="0 0 15 17.5"
-                height="17.5"
-                width="15"
-                xmlns="http://www.w3.org/2000/svg"
-                className="icon"
-              >
-                <path
-                  transform="translate(-2.5 -1.25)"
-                  d="M15,18.75H5A1.251,1.251,0,0,1,3.75,17.5V5H2.5V3.75h15V5H16.25V17.5A1.251,1.251,0,0,1,15,18.75ZM5,5V17.5H15V5Zm7.5,10H11.25V7.5H12.5V15ZM8.75,15H7.5V7.5H8.75V15ZM12.5,2.5h-5V1.25h5V2.5Z"
-                  id="Fill"
-                ></path>
-              </svg>
-            </button>
-            <CrearEditarLugares />
-          </div>
-        ) : null}
       </div>
       <Footer />
     </div>

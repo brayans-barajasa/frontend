@@ -31,7 +31,7 @@ const Perfil = () => {
       })
       .then((resp) => {
         setDatauser(resp.data.result);
-        console.log(Datauser.TipoUsuario);
+        console.log(Datauser);
       })
       .catch((err) => {
         console.log(err);
@@ -131,7 +131,6 @@ const Perfil = () => {
         }
       });
   }
-
 
   useEffect(() => {
     handleEvento();
