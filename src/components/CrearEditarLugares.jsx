@@ -155,7 +155,7 @@ function CrearEditarLugares() {
   }
   const categoriasDiferentes = [
     "Museos",
-    "Galerías de arte",
+    "Barrios Urbano o pueblos",
     "Teatros",
     "Bibliotecas",
     "Lugares históricos",

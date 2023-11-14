@@ -1,5 +1,5 @@
 import React from "react";
-import Logo from "../assets/compo/Logo.jpg"
+import Logo from "../assets/compo/Logo.png"
 import "../styles/Footer.css"
 import { Link, useNavigate } from "react-router-dom";
 import Nav from 'react-bootstrap/Nav';

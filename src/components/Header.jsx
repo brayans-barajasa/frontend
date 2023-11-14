@@ -8,7 +8,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import Logo from "../assets/compo/Logo.jpg";
+import Logo from "../assets/compo/Logo.png";
 import "../styles/Header.css";
 import CardPerfil from './CardPerfil';
 

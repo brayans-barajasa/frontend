@@ -81,6 +81,8 @@ const Inicio = () => {
   const redirigirTerminos = () => {
     navigate("/Terminos");
   };
+  
+
   return (
     <div className="inicio-container">
       <Header />

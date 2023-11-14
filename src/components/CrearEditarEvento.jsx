@@ -177,7 +177,7 @@ function CrearEditarEvento() {
   const categoriasDiferentes = [
     "Entretenimiento",
     "Arte y Cultura",
-    "Deportes",
+    "Festivales",
     "Educación",
     "Alimentación y Bebidas",
     "Salud y Bienestar",

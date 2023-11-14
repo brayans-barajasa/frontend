@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import FormLoginRegistre from "../components/FormLoginRegistre";
 import '../styles/Login.css';
-import Logo from "../assets/compo/Logo.jpg"
-import { Link, useNavigate } from "react-router-dom";
+import Logo from "../assets/compo/Logo.png"
+import { useNavigate } from "react-router-dom";
 
 
 const Login = () => {
